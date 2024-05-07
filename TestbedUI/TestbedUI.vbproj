@@ -6,19 +6,63 @@
     <UseWPF>true</UseWPF>
     <UseWinForms>true</UseWinForms>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="packages\**" />
+    <EmbeddedResource Remove="packages\**" />
+    <None Remove="packages\**" />
+    <Page Remove="packages\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dist\index-sev5YPVL.js" />
+    <None Remove="dist\index.html" />
+    <None Remove="dist\vite.svg" />
+    <None Remove="Program.7z" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AutoItX3Lib">
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>f8937e53-d444-4e71-9275-35b64210cc3b</Guid>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\index-sev5YPVL.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dist\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dist\vite.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AutoItX3.Assembly">
+      <HintPath>..\vendor\autoitx\AutoItX3.Assembly.dll</HintPath>
+    </Reference>
     <Reference Include="devDept.Eyeshot.Control.Wpf.v10">
-      <HintPath>..\..\..\..\..\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Eyeshot.Control.Wpf.v10.dll</HintPath>
+      <HintPath>C:\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Eyeshot.Control.Wpf.v10.dll</HintPath>
     </Reference>
     <Reference Include="devDept.Geometry.v10">
-      <HintPath>..\..\..\..\..\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Geometry.v10.dll</HintPath>
+      <HintPath>C:\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Geometry.v10.dll</HintPath>
     </Reference>
     <Reference Include="devDept.Graphics.Shaders.v10">
-      <HintPath>..\..\..\..\..\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Graphics.Shaders.v10.dll</HintPath>
+      <HintPath>C:\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Graphics.Shaders.v10.dll</HintPath>
     </Reference>
     <Reference Include="devDept.Graphics.Wpf.v10">
-      <HintPath>..\..\..\..\..\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Graphics.Wpf.v10.dll</HintPath>
+      <HintPath>C:\Program Files\devDept Software\Eyeshot Ultimate 10\Bin\devDept.Graphics.Wpf.v10.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Syncfusion.Grid.Wpf">
       <HintPath>..\vendor\4.6.2\Syncfusion.Grid.WPF.dll</HintPath>
     </Reference>
@@ -46,5 +90,27 @@
     <Reference Include="Syncfusion.Tools.Wpf">
       <HintPath>..\vendor\4.6.2\Syncfusion.Tools.WPF.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\logo_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\logo_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AutoItX3_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="dist\assets\" />
+    <Folder Include="IPC\" />
+    <Folder Include="LINQPad\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2478.35" />
+    <PackageReference Include="Microsoft.Web.WebView2.DevToolsProtocolExtension" Version="1.0.2271" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

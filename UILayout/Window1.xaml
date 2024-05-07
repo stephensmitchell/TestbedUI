@@ -1,0 +1,46 @@
+﻿<Window x:Class="Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UILayout"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid>
+        <!-- Define Rows and Columns -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <!-- Top area -->
+        <Border Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <TextBlock Text="Top Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+        <!-- Horizontal Splitter -->
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Grid.ColumnSpan="3"/>
+        <!-- Left area -->
+        <Border Background="LightGreen" Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Left Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+        <!-- Vertical Splitter -->
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" VerticalAlignment="Stretch"/>
+        <!-- Center area -->
+        <Border Background="LightYellow" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Center Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+        <!-- Right area -->
+        <Border Background="LightCoral" Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Right Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+        <!-- Bottom area -->
+        <Border Background="LightGray" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <TextBlock Text="Bottom Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>

@@ -1,7 +1,6 @@
-# TestbedUI - WIP
+# TestbedUI 
 
 Simple application system
-
 - CLI
 - WPF
 - Windows Forms

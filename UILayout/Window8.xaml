@@ -1,0 +1,16 @@
+﻿<Window x:Class="Window8"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UILayout"
+        mc:Ignorable="d"
+        Title="Window8" Height="450" Width="800">
+    <Grid>
+        <Grid HorizontalAlignment="Left" Width="144" Background="#FFD09A9A"/>
+        <Grid HorizontalAlignment="Right" Width="122" Background="#FF67C168"/>
+        <Grid Height="109" Margin="144,0,122,0" VerticalAlignment="Bottom" Background="#FF401818"/>
+        <Grid Margin="144,86,122,109" Background="#FFA4CDCE"/>
+        <Grid Height="86" Margin="144,0,122,0" VerticalAlignment="Top" Background="#FF9E8787"/>
+    </Grid>
+</Window>

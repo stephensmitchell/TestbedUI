@@ -1,0 +1,63 @@
+﻿<Window x:Class="Window12"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UILayout"
+        mc:Ignorable="d"
+        Title="Window12" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Top grid -->
+            <RowDefinition Height="5"/>
+            <!-- Horizontal splitter -->
+            <RowDefinition Height="*"/>
+            <!-- Center grid -->
+            <RowDefinition Height="5"/>
+            <!-- Horizontal splitter -->
+            <RowDefinition Height="Auto"/>
+            <!-- Bottom grid -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <!-- Left grid (resizable) -->
+            <ColumnDefinition Width="5"/>
+            <!-- Vertical splitter -->
+            <ColumnDefinition Width="*"/>
+            <!-- Center grid space -->
+            <ColumnDefinition Width="5"/>
+            <!-- Vertical splitter -->
+            <ColumnDefinition Width="*"/>
+            <!-- Right grid (resizable) -->
+        </Grid.ColumnDefinitions>
+        <!-- Left Grid, spanning from top to bottom -->
+        <Grid Background="#FF110B80" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0">
+            <TextBlock Text="Left Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <!-- Vertical Grid Splitter between Left and Center -->
+        <GridSplitter Width="5" Grid.Row="0" Grid.RowSpan="5" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Gray" ResizeBehavior="PreviousAndNext"/>
+        <!-- Top Grid, only in the center column -->
+        <Grid Background="#FF9E8787" Grid.Row="0" Grid.Column="2" Height="86">
+            <TextBlock Text="Top Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <!-- Horizontal Grid Splitter for Top Area -->
+        <GridSplitter Height="5" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" Background="Gray"/>
+        <!-- Center Grid, only in the center column -->
+        <Grid Background="#FFA4CDCE" Grid.Row="2" Grid.Column="2">
+            <TextBlock Text="Center Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <!-- Horizontal Grid Splitter for Bottom Area -->
+        <GridSplitter Height="5" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" Background="Gray"/>
+        <!-- Bottom Grid, only in the center column -->
+        <Grid Background="#FF401818" Grid.Row="4" Grid.Column="2" Height="100">
+            <TextBlock Text="Bottom Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <!-- Vertical Grid Splitter between Center and Right -->
+        <GridSplitter Width="5" Grid.Row="0" Grid.RowSpan="5" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Gray" ResizeBehavior="PreviousAndNext"/>
+        <!-- Right Grid, spanning from top to bottom -->
+        <Grid Background="#FF67C168" Grid.Row="0" Grid.RowSpan="5" Grid.Column="4">
+            <TextBlock Text="Right Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>
