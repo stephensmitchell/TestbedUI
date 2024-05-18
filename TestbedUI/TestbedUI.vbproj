@@ -19,9 +19,9 @@
     <Page Remove="packages\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="dist\index-sev5YPVL.js" />
-    <None Remove="dist\index.html" />
-    <None Remove="dist\vite.svg" />
+    <None Remove="www\dist\index-sev5YPVL.js" />
+    <None Remove="www\dist\index.html" />
+    <None Remove="www\dist\vite.svg" />
     <None Remove="Program.7z" />
   </ItemGroup>
   <ItemGroup>
@@ -36,13 +36,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dist\index-sev5YPVL.js">
+    <Content Include="www\dist\index-sev5YPVL.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="dist\index.html">
+    <Content Include="www\dist\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="dist\vite.svg">
+    <Content Include="www\dist\vite.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -92,10 +92,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Assets\logo_1.png">
+    <None Update="assets\logo_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\logo_0.png">
+    <None Update="assets\logo_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="AutoItX3_x64.dll">
@@ -103,10 +103,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="dist\assets\" />
-    <Folder Include="IPC\" />
-    <Folder Include="LINQPad\" />
+    <Folder Include="www\dist\assets\" />
+    <Folder Include="ipc\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2478.35" />

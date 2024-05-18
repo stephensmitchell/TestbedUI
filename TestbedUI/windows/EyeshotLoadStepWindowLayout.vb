@@ -8,8 +8,9 @@ Imports devDept.Eyeshot
 Imports devDept.Eyeshot.Entities
 Imports devDept.Geometry
 Imports devDept.Graphics
-Public Module WindowLayout1
-    Sub BuildGrid2(grid As System.Windows.Controls.Grid)
+Imports devDept.Eyeshot.Translators
+Public Module EyeshotLoadStepWindowLayout
+    Sub BuildGrid(grid As System.Windows.Controls.Grid)
         SfSkinManager.SetTheme(grid, New Theme("Windows11Dark"))
         grid.Background = Brushes.Black
         grid.RowDefinitions.Add(New RowDefinition With {.Height = New GridLength(100)})
@@ -106,7 +107,6 @@ Public Module WindowLayout1
     'TODO: Implement a more realistic data loading mechanism
     Async Function LoadItemsAsync(listBox As ListBox) As Task
         Await Task.Delay(1000)
-        '"C:\Users\steph\Desktop\logo_0.png"
         Dim items = Enumerable.Range(1, 10).Select(Function(i) New ItemViewModel With {.Text = $"Item {i}", .ImagePath = $"C:\Users\steph\Desktop\logo_{i Mod 2}.png"}).ToList()
         listBox.Dispatcher.Invoke(Sub() PopulateListBox(items, listBox))
     End Function
@@ -193,8 +193,9 @@ Public Module WindowLayout1
     End Class
     Public Class EyeShotUserControl
         Inherits UserControl
-        Public ViewportLayout1 As ViewportLayout
+        Friend WithEvents ViewportLayout1 As New ViewportLayout
         Public Sub New()
+            AddHandler ViewportLayout1.InitializeScene, AddressOf OnInitializeScene
             ViewportLayout1 = New ViewportLayout()
             Dim key = Environment.GetEnvironmentVariable("EyeshotV10WPF")
             ViewportLayout1.Unlock(key)
@@ -212,6 +213,7 @@ Public Module WindowLayout1
             ViewportLayout1.Camera.Target = New devDept.Geometry.Point3D(0, 0, 50)
             ViewportLayout1.Camera.ZoomFactor = 2
             ViewportLayout1.ShowVertices = False
+            ViewportLayout1.AllowDrop = True
             Dim toolbar As New devDept.Eyeshot.ToolBar()
             toolbar.Buttons.Add(New HomeToolBarButton())
             toolbar.Buttons.Add(New ZoomWindowToolBarButton())
@@ -224,25 +226,41 @@ Public Module WindowLayout1
             ViewportLayout1.GetToolBars.Add(toolbar)
             TestModel()
             AdditionalSetup()
+            Dim ro As New ReadSTEP("D:\Desktop\05-02-2024\test-model-2 - Copy.stp")
+            ro.DoWork()
+            ro.AddToScene(ViewportLayout1)
+            ViewportLayout1.Invalidate()
             Me.Content = ViewportLayout1
         End Sub
         Sub TestModel()
-            Dim hr1 As HexagonalRegion = New HexagonalRegion(Plane.XY, 27.7128129)
-            hr1.Rotate(Utility.DegToRad(30), devDept.Geometry.Vector3D.AxisZ, devDept.Geometry.Point3D.Origin)
-            Dim ext1 As Solid3D = hr1.ExtrudeAsSolid3D(50)
-            Dim lp1 As LinearPath = New LinearPath(Plane.XZ, New Point2D(-82, 0), New Point2D(0, 0), New Point2D(0, 30), New Point2D(-62, 30), New Point2D(-82, 0))
-            Dim r1 As devDept.Eyeshot.Entities.Region = New devDept.Eyeshot.Entities.Region(lp1, Plane.XZ, False)
-            ext1.ExtrudeAdd(r1, New Interval(-24, 24))
-            Dim cr1 As CircularRegion = New CircularRegion(Plane.XY, 8)
-            ViewportLayout1.Entities.Add(cr1, 0, System.Drawing.Color.Red)
-            ext1.ExtrudeRemove(cr1, 50)
-            Dim cr2 As CircularRegion = New CircularRegion(New Plane(New devDept.Geometry.Point3D(0, 0, 10), devDept.Geometry.Vector3D.AxisX, devDept.Geometry.Vector3D.AxisY), 20)
-            ext1.ExtrudeRemove(cr2, 50)
-            Dim rr2 As RectangularRegion = New RectangularRegion(Plane.XZ, -80, 10, 38, 30)
-            ext1.ExtrudeRemove(rr2, New Interval(-12, 12))
-            ViewportLayout1.Entities.Add(ext1, 0, System.Drawing.Color.Aqua)
         End Sub
         Sub AdditionalSetup()
+        End Sub
+        Sub OnInitializeScene(sender As Object, e As EventArgs)
+        End Sub
+        Private Sub LoadSTEPFile(filePath As String)
+            ViewportLayout1.Clear()
+            Dim ro As New ReadSTEP(filePath)
+            ro.DoWork()
+            ro.AddToScene(ViewportLayout1)
+            ViewportLayout1.Invalidate()
+        End Sub
+        Private Sub EyeShotUserControl_Drop(sender As Object, e As DragEventArgs) Handles Me.Drop
+            If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+                Dim files As String() = TryCast(e.Data.GetData(DataFormats.FileDrop), String())
+                If files IsNot Nothing AndAlso files.Length > 0 Then
+                    LoadSTEPFile(files(0))  ' Assume the first file is the STEP file
+                    e.Handled = True
+                End If
+            End If
+        End Sub
+        Private Sub EyeShotUserControl_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
+            If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+                e.Effects = DragDropEffects.Copy
+            Else
+                e.Effects = DragDropEffects.None
+            End If
+            e.Handled = True
         End Sub
     End Class
 End Module
